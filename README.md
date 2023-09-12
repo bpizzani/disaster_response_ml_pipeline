@@ -26,7 +26,7 @@ The repository comes with 2 csv files.
 
 3. Run your web app: `python run.py`
 
-4. Click the `PREVIEW` button to open the homepage
+4. Copy and Paste your local host URL in the navigator.
 
 ### Data Source
 Figure 8 & Udacity
