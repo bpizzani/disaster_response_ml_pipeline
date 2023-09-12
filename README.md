@@ -1,4 +1,14 @@
 # Disaster Response Pipeline Project
+### Project Summary:
+The project aims to classify into different categories (36) comments from people related to different disasters situations. 
+
+The Projects is composed of tree basic steps:
+1. Create an ETL (extract and clean the data)
+2. Create a ML Pipeline (Extract date and prepare it for training)
+3. Deployed a Web App to consume the model's predictions.
+4. 
+Data Source: Figure 8 & Udacity
+
 
 ### Instructions:
 1. Run the following commands in the project's root directory to set up your database and model.
