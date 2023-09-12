@@ -10,26 +10,36 @@ def load_data(messages_filepath, categories_filepath):
     return df
 
 def clean_data(df):
+    #Split the categories into different columns separated by ";"
     categories = df["categories"].str.split(";",expand=True)
+    
+    #Get the columns names
     category_colnames = [x.split("-")[0] for x in categories.iloc[0]]
     categories.columns = category_colnames
+    
     for column in categories:
         # set each value to be the last character of the string
         categories[column] = categories[column].apply(lambda x: x[-1])
         # convert column from string to numeric
-        categories[column] = categories[column].astype(int) 
+        categories[column] = categories[column].astype(int)
+        
+    #drop origina lcategories
     df.drop("categories",axis=1,inplace=True)
+    
+    #Join all toegther
     df = pd.concat([df,categories],axis=1)
+    
+    #drop duplicates
     df = df.drop_duplicates("id")
     return df
 
 
 def save_data(df, database_filename):
+    #Save dataframe into an SQL database for further consumption
     engine = create_engine(f'sqlite:///{database_filename}')
     df.to_sql('comments', engine, index=False)
 
 def main():
-    print(f"hi : {sys.argv}")
     if len(sys.argv) == 4:
 
         messages_filepath, categories_filepath, database_filepath = sys.argv[1:]
