@@ -34,12 +34,16 @@ def load_data(database_filepath):
     return X,Y, category_names
 
 def tokenize(text):
+    # Tokenize text into words 
     tokens = word_tokenize(text)
     lemmer = WordNetLemmatizer()
+
+    #Clean tokens by lemmetizing them and removing stopwords
     clean_tokens = [lemmer.lemmatize(x.lower().strip()) for x in tokens if x.lower().strip() not in stopwords.words('english')]
     return clean_tokens
 
 def build_model():
+    #Create a Pipeline model that vectorizes text and pass it to a Random Forest with Multioutput labels
     model = Pipeline([("vect",TfidfVectorizer(tokenizer=tokenize)),
                          ("clf",MultiOutputClassifier(RandomForestClassifier()))
                     ])
@@ -55,6 +59,7 @@ def build_GridSearch_model(model):
 
 def evaluate_model(model, X_test, Y_test, category_names):
     y_pred = model.predict(X_test)
+    #Run Classification report for each column / label
     for i,col_name in enumerate(category_names):
         print(col_name)
         print(classification_report(Y_test[:,i],y_pred[:,i]))
