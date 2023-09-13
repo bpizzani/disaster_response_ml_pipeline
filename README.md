@@ -16,9 +16,10 @@ The Projects is composed of tree basic steps:
 
 
 ### Files
-The repository comes with 2 csv files.
-   1 for the messages 
-   1 for the different categories separated by ";".
+The repository comes with 2 necessary csv files for the app to run.
+   1. disaster_messages.csv
+   2. disaster_categories.csv
+   
 - ./
     - app
         - run.py
