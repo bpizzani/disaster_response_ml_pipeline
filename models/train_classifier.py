@@ -25,6 +25,15 @@ from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.base import BaseEstimator, TransformerMixin
 
 def load_data(database_filepath):
+        """
+    Loads Database data from SQL engine database_filepath.
+ 
+    Args:
+        database_filepath (string): Database directory name.
+ 
+    Returns:
+        array: Splited X, Y values and category names list.
+    """
     # load data from database
     engine = create_engine(f'sqlite:///{database_filepath}')
     df = pd.read_sql_table("comments",engine)
@@ -34,6 +43,15 @@ def load_data(database_filepath):
     return X,Y, category_names
 
 def tokenize(text):
+    """
+    Tokenizes and cleans original text  / comments.
+ 
+    Args:
+        text (string): Text / comments.
+ 
+    Returns:
+        array: clean word tokens.
+    """
     # Tokenize text into words 
     tokens = word_tokenize(text)
     lemmer = WordNetLemmatizer()
@@ -43,7 +61,12 @@ def tokenize(text):
     return clean_tokens
 
 def build_model():
-    #Create a Pipeline model that vectorizes text and pass it to a Random Forest with Multioutput labels
+    """
+    #Create a Pipeline model that vectorizes text and pass it to a Random Forest with Multioutput labels.
+ 
+    Returns:
+        model: pipeline model.
+    """
     model = Pipeline([("vect",TfidfVectorizer(tokenizer=tokenize)),
                          ("clf",MultiOutputClassifier(RandomForestClassifier()))
                     ])
@@ -58,6 +81,18 @@ def build_GridSearch_model(model):
     return cv
 
 def evaluate_model(model, X_test, Y_test, category_names):
+    """
+    Evaluates model's performance using classification_report
+ 
+    Args:
+        model (sklearn): ML Pipeline.
+        X_test (array): X test values.
+        Y_test (array): Y test labels.
+        category_names (array): labels names.
+ 
+    Returns:
+        print: Each category name classification_report.
+    """
     y_pred = model.predict(X_test)
     #Run Classification report for each column / label
     for i,col_name in enumerate(category_names):
@@ -67,6 +102,16 @@ def evaluate_model(model, X_test, Y_test, category_names):
 
 
 def save_model(model, model_filepath):
+    """
+    Save model into directory
+ 
+    Args:
+        model (sklearn): ML Pipeline.
+        model_filepath (string): filepath / name of the model to save.
+ 
+    Returns:
+        Saves model into directory
+    """
     with open(model_filepath, 'wb') as f:
         pickle.dump(model, f)
 
