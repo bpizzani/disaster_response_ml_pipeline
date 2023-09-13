@@ -25,7 +25,7 @@ from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.base import BaseEstimator, TransformerMixin
 
 def load_data(database_filepath):
-        """
+    """
     Loads Database data from SQL engine database_filepath.
  
     Args:
