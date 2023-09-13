@@ -1,11 +1,18 @@
 # Disaster Response Pipeline Project
 ### Project Summary:
+
 The project aims to classify into different categories (36) comments from people related to different disasters situations. 
+
+**Why this is important?**
+
+The importance of this project relies in helping classifying natural disaster communications from diffrent sourcers. Classifying communications right away is important in order prioritise and allocate resourcers into different disaster response teams or organizations to support in the corresponding areas.
 
 The Projects is composed of tree basic steps:
 1. Create an ETL (extract and clean the data)
 2. Create a ML Pipeline (Extract date and prepare it for training)
 3. Deployed a Web App to consume the model's predictions.
+
+
 
 
 ### Content
@@ -27,6 +34,8 @@ The repository comes with 2 csv files.
 3. Run your web app: `python run.py`
 
 4. Copy and Paste your local host URL in the navigator.
+
+
 
 ### Data Source
 Figure 8 & Udacity
