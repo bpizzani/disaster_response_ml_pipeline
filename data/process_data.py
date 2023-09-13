@@ -3,6 +3,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 def load_data(messages_filepath, categories_filepath):
+
     messages = pd.read_csv(messages_filepath)
     categories = pd.read_csv(categories_filepath)
     
@@ -10,6 +11,16 @@ def load_data(messages_filepath, categories_filepath):
     return df
 
 def clean_data(df):
+    """
+    Cleans the DF, create new columns, drop unused columns, format data types and filter non binary values.
+ 
+    Args:
+        df (dataframe): Dataframe with comments and categories
+ 
+    Returns:
+        dataframe: clean dataframe
+    """
+    
     #Split the categories into different columns separated by ";"
     categories = df["categories"].str.split(";",expand=True)
     
@@ -42,6 +53,16 @@ def clean_data(df):
 
 
 def save_data(df, database_filename):
+    """
+    Saves dataframe as a database.
+    
+    Args:
+        df (dataframe): Dataframe with comments and categories.
+        database_filename (string): directory path / name to save the dataframe.
+ 
+    Returns:
+        Saves the dataframe into database_filename
+    """
     #Save dataframe into an SQL database for further consumption
     engine = create_engine(f'sqlite:///{database_filename}')
     df.to_sql('comments', engine, index=False,if_exists='replace')
