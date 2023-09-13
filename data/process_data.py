@@ -22,7 +22,14 @@ def clean_data(df):
         categories[column] = categories[column].apply(lambda x: x[-1])
         # convert column from string to numeric
         categories[column] = categories[column].astype(int)
-        
+
+    #Checking for non-binary classes columns
+    non_binary_classes = categories.columns[categories.apply(lambda x: sorted(x.unique()) != [0, 1] and sorted(x.unique()) != [0] and sorted(x.unique()) != [1])].values
+    
+    #Drop rows where label is not binary (0 or 1)
+    for col in non_binary_classes:
+        categories = categories[categories[col] <= 1]
+    
     #drop origina lcategories
     df.drop("categories",axis=1,inplace=True)
     
