@@ -30,8 +30,10 @@ The repository comes with 2 necessary csv files for the app to run.
         - disaster_messages.csv
         - disaster_categories.csv
         - database.db (optional)
+        - process_data.py
     - models
         - model.pkl (optional)
+        - train_classifier.py
     - README
 
 ### Instructions:
