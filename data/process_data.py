@@ -3,7 +3,16 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 def load_data(messages_filepath, categories_filepath):
-
+    """
+    Loads two dataframe data from two different filepaths. 
+ 
+    Args:
+        messages_filepath (string): messages csv directory name.
+        categories_filepath (string): categories csv directory name.
+ 
+    Returns:
+        dataframe: merged dataframe with messages and categories.
+    """
     messages = pd.read_csv(messages_filepath)
     categories = pd.read_csv(categories_filepath)
     
