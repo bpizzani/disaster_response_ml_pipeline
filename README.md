@@ -15,11 +15,24 @@ The Projects is composed of tree basic steps:
 
 
 
-### Content
+### Files
 The repository comes with 2 csv files.
    1 for the messages 
    1 for the different categories separated by ";".
-
+- ./
+    - app
+        - Subdirectory 1.1
+            - File 1.1.1
+            - File 1.1.2
+        - Subdirectory 1.2
+            - File 1.2.1
+            - File 1.2.2
+    - data
+        - File 2.1
+        - File 2.2
+    - models
+        - File 2.1
+    - README
 
 ### Instructions:
 1. Run the following commands in the project's root directory to set up your database and model.
