@@ -21,17 +21,16 @@ The repository comes with 2 csv files.
    1 for the different categories separated by ";".
 - ./
     - app
-        - Subdirectory 1.1
-            - File 1.1.1
-            - File 1.1.2
-        - Subdirectory 1.2
-            - File 1.2.1
-            - File 1.2.2
+        - run.py
+        - tempaltes
+            - master.html
+            - go.html   
     - data
-        - File 2.1
-        - File 2.2
+        - disaster_messages.csv
+        - disaster_categories.csv
+        - database.db (optional)
     - models
-        - File 2.1
+        - model.pkl (optional)
     - README
 
 ### Instructions:
